@@ -58,7 +58,15 @@ body {
   color: #c3c3c3;
   font-weight: 700;
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 10px 2px;
   cursor: pointer;
   margin-bottom: 10px;
+}
+#new-book:hover {
+  transform: scale(0.95);
+  background-color: black;
+  color: rgb(222, 7, 7);
+}
+#new-book:active {
+  transform: scale(0.85);
 }
