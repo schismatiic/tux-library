@@ -18,7 +18,25 @@
             <h1>Tux<span>Library</span></h1>
         </div>
         <div id="book-container">
-            <button id="new-book">+ New book</button>
+            <button command="show-modal" commandfor="my-dialog" id="new-book">+ New book</button>
+            <div>
+                <dialog id="my-dialog">
+                    <form method="dialog">
+                        <h4>Add a new book</h4>
+                        <section id="inputs">
+                            <label for="name">Name</label>
+                            <input id="name" type="text" placeholder="Don Quijote de la Mancha">
+                            <label for="author">Author</label>
+                            <input id="author" type="text" placeholder="Miguel de Cervantes">
+                        </section>
+                        <menu>
+                            <button type="submit">Confirm</button>
+                        </menu>
+                    </form>
+                    <button id="close" commandfor="my-dialog" command="close">[X] Close</button>
+                </dialog>
+            </div>
+
         </div>
 
     </div>
