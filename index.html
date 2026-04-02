@@ -28,12 +28,16 @@
                             <input id="name" type="text" placeholder="Don Quijote de la Mancha">
                             <label for="author">Author</label>
                             <input id="author" type="text" placeholder="Miguel de Cervantes">
+                            <label for="numberOfPages">Number of pages</label>
+                            <input id="numberOfPages" type="number" placeholder="1380">
                         </section>
                         <menu>
-                            <button type="submit">Confirm</button>
+                            <button id="submit__button" type="submit">Confirm</button>
                         </menu>
                     </form>
-                    <button id="close" commandfor="my-dialog" command="close">[X] Close</button>
+                    <div class="close__box">
+                        <button id="close" commandfor="my-dialog" command="close">[X] Close</button>
+                    </div>
                 </dialog>
             </div>
 

@@ -44,8 +44,34 @@ body {
   background-color: #c3c3c3;
   border-radius: 15px;
   width: 600px;
+  height: 450px;
   border: 0.0001px solid rgba(255, 255, 255, 0.375);
+  overflow: auto;
 }
+/* Ancho de la barra */
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 30px;
+}
+
+/* Fondo de la barra (track) */
+::-webkit-scrollbar-track {
+  background: #707070;
+  margin: 20px;
+  border-radius: 30px;
+}
+
+/* Parte desplazable (thumb) */
+::-webkit-scrollbar-thumb {
+  background: #1e1e1e;
+  border-radius: 30px;
+}
+
+/* Cambiar color al pasar el ratón */
+::-webkit-scrollbar-thumb:hover {
+  background: #3e3e3e;
+}
+
 .book {
   padding: 20px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.378);
@@ -54,7 +80,8 @@ body {
   border-bottom: none;
 }
 #new-book,
-#close {
+#close,
+#submit__button {
   width: 25%;
   background-color: rgb(222, 7, 7);
   color: #c3c3c3;
@@ -95,21 +122,49 @@ body {
   padding: 4px 6px;
 }
 #close {
-  font-size: 10px;
-  width: 30%;
+  background-color: black;
+  color: rgb(222, 7, 7);
+  font-size: 12px;
+  width: 40%;
   margin-top: 30px;
   padding: 6px 2px;
 }
 #close:hover {
   transform: scale(0.95);
+}
+#close::active {
+  transform: scale(0.85);
+}
+.close__box {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+#submit__button {
+  margin-top: 6px;
+  width: 48%;
+  border-radius: 20px;
+}
+#submit__button:hover {
+  transform: scale(0.95);
   background-color: black;
   color: rgb(222, 7, 7);
 }
-#close::active {
+#submit__button:active {
   transform: scale(0.85);
 }
 #my-dialog h4 {
   margin-bottom: 10px;
   padding: 4px 0;
   border-bottom: 0.0001px solid rgba(255, 255, 255, 0.375);
+}
+#my-dialog menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

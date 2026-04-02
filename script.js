@@ -11,6 +11,7 @@ function Book(id, name, author, numberOfPages) {
 const tux = document.getElementById("tux");
 const book__box = document.getElementById("book-container");
 const addButton = document.getElementById("new-book");
+const submitButton = document.getElementById("submit__button");
 
 // ======================== ADD BOOKS ========================
 const addBookToLibrary = (name, author, numberOfPages) => {
@@ -25,7 +26,11 @@ const donQuijote = addBookToLibrary(
   "Miguel de Cervantes",
   1380,
 );
-const crimeAndPunishment = addBookToLibrary("Punishement", "Dostoevsky", 720);
+const crimeAndPunishment = addBookToLibrary(
+  "Crime and Punishment",
+  "Dostoevsky",
+  720,
+);
 const orwell1984 = addBookToLibrary("1984", "Orwell", 336);
 
 // =========================== TUX ===========================
@@ -34,6 +39,7 @@ tux.addEventListener("click", () => {
 });
 
 // ===================== RENDERIZE BOOKS =====================
+
 const renderizeBooks = () => {
   myLibrary.forEach((book) => {
     const bookItem = document.createElement("div");
@@ -57,4 +63,11 @@ const renderizeBooks = () => {
     book__box.appendChild(bookItem);
   });
 };
+submitButton.addEventListener("click", (event) => {
+  const inputName = document.getElementById("name").value;
+  const inputAuthor = document.getElementById("author").value;
+  const inputNumberOfPages = document.getElementById("numberOfPages").value;
+  addBookToLibrary(inputName, inputAuthor, inputNumberOfPages);
+  renderizeBooks();
+});
 renderizeBooks();
