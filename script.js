@@ -40,8 +40,30 @@ tux.addEventListener("click", () => {
 
 // ===================== RENDERIZE BOOKS =====================
 
-const renderizeBooks = () => {
-  myLibrary.forEach((book) => {
+const renderizeBooks = (addedBook) => {
+  if (myLibrary.length <= 3) {
+    myLibrary.forEach((book) => {
+      const bookItem = document.createElement("div");
+
+      const name = document.createElement("h3");
+      const author = document.createElement("p");
+      const numberOfPages = document.createElement("p");
+
+      bookItem.className = "book";
+      name.className = "book__name";
+      author.className = "book__author";
+      numberOfPages.className = "book__pages";
+
+      name.textContent = `➤ ${book.name}`;
+      author.textContent = `Author: ${book.author}`;
+      numberOfPages.textContent = `Number of pages: ${book.numberOfPages}`;
+
+      bookItem.appendChild(name);
+      bookItem.appendChild(author);
+      bookItem.appendChild(numberOfPages);
+      book__box.appendChild(bookItem);
+    });
+  } else {
     const bookItem = document.createElement("div");
 
     const name = document.createElement("h3");
@@ -53,21 +75,22 @@ const renderizeBooks = () => {
     author.className = "book__author";
     numberOfPages.className = "book__pages";
 
-    name.textContent = `➤ ${book.name}`;
-    author.textContent = `Author: ${book.author}`;
-    numberOfPages.textContent = `Number of pages: ${book.numberOfPages}`;
+    name.textContent = `➤ ${addedBook.name}`;
+    author.textContent = `Author: ${addedBook.author}`;
+    numberOfPages.textContent = `Number of pages: ${addedBook.numberOfPages}`;
 
     bookItem.appendChild(name);
     bookItem.appendChild(author);
     bookItem.appendChild(numberOfPages);
     book__box.appendChild(bookItem);
-  });
+  }
 };
 submitButton.addEventListener("click", (event) => {
   const inputName = document.getElementById("name").value;
   const inputAuthor = document.getElementById("author").value;
   const inputNumberOfPages = document.getElementById("numberOfPages").value;
   addBookToLibrary(inputName, inputAuthor, inputNumberOfPages);
-  renderizeBooks();
+  const bookToRenderize = myLibrary[myLibrary.length - 1];
+  renderizeBooks(bookToRenderize);
 });
 renderizeBooks();
