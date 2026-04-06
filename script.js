@@ -20,7 +20,11 @@ const addBookToLibrary = (name, author, numberOfPages) => {
   return myLibrary;
 };
 // ======================= REMOVE BOOK =======================
-const removeBook = (array, id) => {};
+const removeBook = (array, bookId) => {
+  const newArray = array.filter((book) => book.id !== bookId);
+  console.log(newArray);
+  return newArray;
+};
 
 // ====================== DEFAULT BOOKS ======================
 const donQuijote = addBookToLibrary(
@@ -61,6 +65,8 @@ const renderBooks = (addedBook) => {
       bookItem.setAttribute("data-bookId", `${book.id}`);
       removeButton.addEventListener("click", () => {
         const idName = bookItem.getAttribute("data-bookId");
+        const newLibrary = removeBook(myLibrary, idName);
+        renderBooks(newLibrary);
         console.log(idName);
       });
       name.textContent = `➤ ${book.name}`;
