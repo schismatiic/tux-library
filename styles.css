@@ -168,3 +168,17 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.remove__button {
+  background-color: rgb(48, 48, 48);
+  color: #c3c3c3;
+  margin-top: 8px;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.remove__button:hover {
+  transform: scale(0.95);
+}
+.remove__button:active {
+  transform: scale(0.85);
+}
