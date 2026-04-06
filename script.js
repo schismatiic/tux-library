@@ -74,19 +74,24 @@ const renderBooks = (addedBook) => {
     const name = document.createElement("h3");
     const author = document.createElement("p");
     const numberOfPages = document.createElement("p");
+    const removeButton = document.createElement("button");
 
     bookItem.className = "book";
     name.className = "book__name";
     author.className = "book__author";
     numberOfPages.className = "book__pages";
+    removeButton.className = "remove__button";
 
     name.textContent = `➤ ${addedBook.name}`;
     author.textContent = `Author: ${addedBook.author}`;
     numberOfPages.textContent = `Number of pages: ${addedBook.numberOfPages}`;
+    removeButton.textContent = "Remove";
 
     bookItem.appendChild(name);
     bookItem.appendChild(author);
     bookItem.appendChild(numberOfPages);
+    bookItem.appendChild(removeButton);
+
     book__box.appendChild(bookItem);
   }
 };
