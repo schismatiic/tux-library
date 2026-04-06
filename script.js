@@ -13,13 +13,14 @@ const tux = document.getElementById("tux");
 const book__box = document.getElementById("book-container");
 const addButton = document.getElementById("new-book");
 const submitButton = document.getElementById("submit__button");
-
 // ======================== ADD BOOKS ========================
 const addBookToLibrary = (name, author, numberOfPages) => {
   const newBook = new Book(crypto.randomUUID(), name, author, numberOfPages);
   myLibrary.push(newBook);
   return myLibrary;
 };
+// ======================= REMOVE BOOK =======================
+const removeBook = (array, id) => {};
 
 // ====================== DEFAULT BOOKS ======================
 const donQuijote = addBookToLibrary(
@@ -57,6 +58,11 @@ const renderBooks = (addedBook) => {
       numberOfPages.className = "book__pages";
       removeButton.className = "remove__button";
 
+      bookItem.setAttribute("data-bookId", `${book.id}`);
+      removeButton.addEventListener("click", () => {
+        const idName = bookItem.getAttribute("data-bookId");
+        console.log(idName);
+      });
       name.textContent = `➤ ${book.name}`;
       author.textContent = `Author: ${book.author}`;
       numberOfPages.textContent = `Number of pages: ${book.numberOfPages}`;
@@ -82,6 +88,12 @@ const renderBooks = (addedBook) => {
     numberOfPages.className = "book__pages";
     removeButton.className = "remove__button";
 
+    bookItem.setAttribute("data-bookId", `${book.id}`);
+    removeButton.addEventListener("click", () => {
+      const idName = bookItem.getAttribute("data-bookId");
+      console.log(idName);
+    });
+
     name.textContent = `➤ ${addedBook.name}`;
     author.textContent = `Author: ${addedBook.author}`;
     numberOfPages.textContent = `Number of pages: ${addedBook.numberOfPages}`;
@@ -104,4 +116,5 @@ submitButton.addEventListener("click", (event) => {
   const bookToRender = myLibrary[myLibrary.length - 1];
   renderBooks(bookToRender);
 });
+
 renderBooks();
