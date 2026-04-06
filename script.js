@@ -1,4 +1,5 @@
 const myLibrary = [];
+let count = 0;
 // ======================= CONSTRUCTOR =======================
 function Book(id, name, author, numberOfPages) {
   this.id = id;
@@ -38,10 +39,10 @@ tux.addEventListener("click", () => {
   tux.src = "https://media.tenor.com/S61VCO73mOAAAAAj/linux-tux.gif";
 });
 
-// ===================== RENDERIZE BOOKS =====================
+// ===================== RENDER BOOKS =====================
 
-const renderizeBooks = (addedBook) => {
-  if (myLibrary.length <= 3) {
+const renderBooks = (addedBook) => {
+  if (count === 0) {
     myLibrary.forEach((book) => {
       const bookItem = document.createElement("div");
 
@@ -90,7 +91,8 @@ submitButton.addEventListener("click", (event) => {
   const inputAuthor = document.getElementById("author").value;
   const inputNumberOfPages = document.getElementById("numberOfPages").value;
   addBookToLibrary(inputName, inputAuthor, inputNumberOfPages);
-  const bookToRenderize = myLibrary[myLibrary.length - 1];
-  renderizeBooks(bookToRenderize);
+  count++;
+  const bookToRender = myLibrary[myLibrary.length - 1];
+  renderBooks(bookToRender);
 });
-renderizeBooks();
+renderBooks();
