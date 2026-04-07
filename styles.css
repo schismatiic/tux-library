@@ -168,7 +168,8 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.remove__button {
+.remove__button,
+.toggle__button {
   background-color: rgb(48, 48, 48);
   color: #c3c3c3;
   margin-top: 8px;
@@ -180,5 +181,17 @@ input[type="number"]::-webkit-outer-spin-button {
   transform: scale(0.95);
 }
 .remove__button:active {
+  transform: scale(0.85);
+}
+.toggle__button {
+  margin-left: 10px;
+  background-color: rgb(0, 0, 0);
+  color: rgb(222, 7, 7);
+  width: 18%;
+}
+.toggle__button:hover {
+  transform: scale(0.95);
+}
+.toggle__button:active {
   transform: scale(0.85);
 }
