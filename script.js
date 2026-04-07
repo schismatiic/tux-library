@@ -38,10 +38,10 @@ const donQuijote = addBookToLibrary(
 );
 const crimeAndPunishment = addBookToLibrary(
   "Crime and Punishment",
-  "Dostoevsky",
+  "Fyodor Dostoevsky",
   720,
 );
-const orwell1984 = addBookToLibrary("1984", "Orwell", 336);
+const orwell1984 = addBookToLibrary("1984", "George Orwell", 336);
 
 // =========================== DOM ===========================
 const tux = document.getElementById("tux");
