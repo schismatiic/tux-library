@@ -1,16 +1,23 @@
 let myLibrary = [];
 let count = 0;
 // ======================= CONSTRUCTOR =======================
-function Book(id, name, author, numberOfPages) {
+function Book(id, name, author, numberOfPages, toggle) {
   this.id = id;
   this.name = name;
   this.author = author;
   this.numberOfPages = numberOfPages;
+  this.toggle = toggle;
 }
 
 // ======================== ADD BOOKS ========================
 const addBookToLibrary = (name, author, numberOfPages) => {
-  const newBook = new Book(crypto.randomUUID(), name, author, numberOfPages);
+  const newBook = new Book(
+    crypto.randomUUID(),
+    name,
+    author,
+    numberOfPages,
+    true,
+  );
   myLibrary.push(newBook);
   return myLibrary;
 };
@@ -42,38 +49,49 @@ const submitButton = document.getElementById("submit__button");
 
 // ===================== RENDER BOOKS =====================
 const renderBooks = (library) => {
+  console.log(myLibrary);
+
   library.forEach((book) => {
-    const bookItem = document.createElement("div");
+    if (book.toggle === true) {
+      const bookItem = document.createElement("div");
 
-    const nameRender = document.createElement("h3");
-    const author = document.createElement("p");
-    const numberOfPages = document.createElement("p");
-    const removeButton = document.createElement("button");
+      const nameRender = document.createElement("h3");
+      const author = document.createElement("p");
+      const numberOfPages = document.createElement("p");
+      const removeButton = document.createElement("button");
 
-    bookItem.className = "book";
-    nameRender.className = "book__name";
-    author.className = "book__author";
-    numberOfPages.className = "book__pages";
-    removeButton.className = "remove__button";
+      bookItem.className = "book";
+      nameRender.className = "book__name";
+      author.className = "book__author";
+      numberOfPages.className = "book__pages";
+      removeButton.className = "remove__button";
 
-    bookItem.setAttribute("data-bookId", `${book.id}`);
-    removeButton.addEventListener("click", () => {
-      const idName = bookItem.getAttribute("data-bookId");
-      const newLibrary = removeBook(myLibrary, idName);
-      count = count - 100;
-      renderBooks(newLibrary);
-      console.log(idName);
-    });
-    nameRender.textContent = `➤ ${book.name}`;
-    author.textContent = `Author: ${book.author}`;
-    numberOfPages.textContent = `Number of pages: ${book.numberOfPages}`;
-    removeButton.textContent = "Remove";
+      bookItem.setAttribute("data-bookId", `${book.id}`);
+      removeButton.addEventListener("click", () => {
+        const idName = bookItem.getAttribute("data-bookId");
+        const newLibrary = removeBook(myLibrary, idName);
+        myLibrary = newLibrary;
+        count = count - 100;
+        bookItem.removeChild(nameRender);
+        bookItem.removeChild(author);
+        bookItem.removeChild(numberOfPages);
+        bookItem.removeChild(removeButton);
+        book__box.removeChild(bookItem);
+        renderBooks(myLibrary);
+        console.log(idName);
+      });
+      nameRender.textContent = `➤ ${book.name}`;
+      author.textContent = `Author: ${book.author}`;
+      numberOfPages.textContent = `Number of pages: ${book.numberOfPages}`;
+      removeButton.textContent = "Remove";
 
-    bookItem.appendChild(nameRender);
-    bookItem.appendChild(author);
-    bookItem.appendChild(numberOfPages);
-    bookItem.appendChild(removeButton);
-    book__box.appendChild(bookItem);
+      bookItem.appendChild(nameRender);
+      bookItem.appendChild(author);
+      bookItem.appendChild(numberOfPages);
+      bookItem.appendChild(removeButton);
+      book__box.appendChild(bookItem);
+      book.toggle = false;
+    }
   });
 };
 submitButton.addEventListener("click", (event) => {
@@ -83,7 +101,6 @@ submitButton.addEventListener("click", (event) => {
   addBookToLibrary(inputName, inputAuthor, inputNumberOfPages);
   // count++;
   // const bookToRender = myLibrary[myLibrary.length - 1];
-  console.log(libraryLength);
   renderBooks(myLibrary);
 });
 
