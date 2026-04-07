@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 let count = 0;
 // ======================= CONSTRUCTOR =======================
 function Book(id, name, author, numberOfPages) {
@@ -8,11 +8,6 @@ function Book(id, name, author, numberOfPages) {
   this.numberOfPages = numberOfPages;
 }
 
-// =========================== DOM ===========================
-const tux = document.getElementById("tux");
-const book__box = document.getElementById("book-container");
-const addButton = document.getElementById("new-book");
-const submitButton = document.getElementById("submit__button");
 // ======================== ADD BOOKS ========================
 const addBookToLibrary = (name, author, numberOfPages) => {
   const newBook = new Book(crypto.randomUUID(), name, author, numberOfPages);
@@ -22,7 +17,7 @@ const addBookToLibrary = (name, author, numberOfPages) => {
 // ======================= REMOVE BOOK =======================
 const removeBook = (array, bookId) => {
   const newArray = array.filter((book) => book.id !== bookId);
-  console.log(newArray);
+  myLibrary = newArray;
   return newArray;
 };
 
@@ -39,57 +34,24 @@ const crimeAndPunishment = addBookToLibrary(
 );
 const orwell1984 = addBookToLibrary("1984", "Orwell", 336);
 
-// =========================== TUX ===========================
-tux.addEventListener("click", () => {
-  tux.src = "https://media.tenor.com/S61VCO73mOAAAAAj/linux-tux.gif";
-});
+// =========================== DOM ===========================
+const tux = document.getElementById("tux");
+const book__box = document.getElementById("book-container");
+const addButton = document.getElementById("new-book");
+const submitButton = document.getElementById("submit__button");
 
 // ===================== RENDER BOOKS =====================
-
-const renderBooks = (addedBook) => {
-  if (count === 0) {
-    myLibrary.forEach((book) => {
-      const bookItem = document.createElement("div");
-
-      const name = document.createElement("h3");
-      const author = document.createElement("p");
-      const numberOfPages = document.createElement("p");
-      const removeButton = document.createElement("button");
-
-      bookItem.className = "book";
-      name.className = "book__name";
-      author.className = "book__author";
-      numberOfPages.className = "book__pages";
-      removeButton.className = "remove__button";
-
-      bookItem.setAttribute("data-bookId", `${book.id}`);
-      removeButton.addEventListener("click", () => {
-        const idName = bookItem.getAttribute("data-bookId");
-        const newLibrary = removeBook(myLibrary, idName);
-        renderBooks(newLibrary);
-        console.log(idName);
-      });
-      name.textContent = `➤ ${book.name}`;
-      author.textContent = `Author: ${book.author}`;
-      numberOfPages.textContent = `Number of pages: ${book.numberOfPages}`;
-      removeButton.textContent = "Remove";
-
-      bookItem.appendChild(name);
-      bookItem.appendChild(author);
-      bookItem.appendChild(numberOfPages);
-      bookItem.appendChild(removeButton);
-      book__box.appendChild(bookItem);
-    });
-  } else {
+const renderBooks = (library) => {
+  library.forEach((book) => {
     const bookItem = document.createElement("div");
 
-    const name = document.createElement("h3");
+    const nameRender = document.createElement("h3");
     const author = document.createElement("p");
     const numberOfPages = document.createElement("p");
     const removeButton = document.createElement("button");
 
     bookItem.className = "book";
-    name.className = "book__name";
+    nameRender.className = "book__name";
     author.className = "book__author";
     numberOfPages.className = "book__pages";
     removeButton.className = "remove__button";
@@ -97,30 +59,37 @@ const renderBooks = (addedBook) => {
     bookItem.setAttribute("data-bookId", `${book.id}`);
     removeButton.addEventListener("click", () => {
       const idName = bookItem.getAttribute("data-bookId");
+      const newLibrary = removeBook(myLibrary, idName);
+      count = count - 100;
+      renderBooks(newLibrary);
       console.log(idName);
     });
-
-    name.textContent = `➤ ${addedBook.name}`;
-    author.textContent = `Author: ${addedBook.author}`;
-    numberOfPages.textContent = `Number of pages: ${addedBook.numberOfPages}`;
+    nameRender.textContent = `➤ ${book.name}`;
+    author.textContent = `Author: ${book.author}`;
+    numberOfPages.textContent = `Number of pages: ${book.numberOfPages}`;
     removeButton.textContent = "Remove";
 
-    bookItem.appendChild(name);
+    bookItem.appendChild(nameRender);
     bookItem.appendChild(author);
     bookItem.appendChild(numberOfPages);
     bookItem.appendChild(removeButton);
-
     book__box.appendChild(bookItem);
-  }
+  });
 };
 submitButton.addEventListener("click", (event) => {
   const inputName = document.getElementById("name").value;
   const inputAuthor = document.getElementById("author").value;
   const inputNumberOfPages = document.getElementById("numberOfPages").value;
   addBookToLibrary(inputName, inputAuthor, inputNumberOfPages);
-  count++;
-  const bookToRender = myLibrary[myLibrary.length - 1];
-  renderBooks(bookToRender);
+  // count++;
+  // const bookToRender = myLibrary[myLibrary.length - 1];
+  console.log(libraryLength);
+  renderBooks(myLibrary);
 });
 
-renderBooks();
+renderBooks(myLibrary);
+
+// =========================== TUX ===========================
+tux.addEventListener("click", () => {
+  tux.src = "https://media.tenor.com/S61VCO73mOAAAAAj/linux-tux.gif";
+});
