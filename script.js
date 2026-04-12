@@ -1,15 +1,16 @@
 let myLibrary = [];
 let count = 0;
 // ======================= CONSTRUCTOR =======================
-function Book(id, name, author, numberOfPages, toggle, toggleRead) {
-  this.id = id;
-  this.name = name;
-  this.author = author;
-  this.numberOfPages = numberOfPages;
-  this.toggle = toggle;
-  this.toggleRead = toggleRead;
+class Book {
+  constructor(id, name, author, numberOfPages, toggle, toggleRead) {
+    this.id = id;
+    this.name = name;
+    this.author = author;
+    this.numberOfPages = numberOfPages;
+    this.toggle = toggle;
+    this.toggleRead = toggleRead;
+  }
 }
-
 // ======================== ADD BOOKS ========================
 const addBookToLibrary = (name, author, numberOfPages) => {
   const newBook = new Book(
