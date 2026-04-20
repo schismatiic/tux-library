@@ -25,11 +25,11 @@
                         <h4>Add a new book</h4>
                         <section id="inputs">
                             <label for="name">Name</label>
-                            <input id="name" type="text" placeholder="Don Quijote de la Mancha">
+                            <input required id="name" type="text" placeholder="Don Quijote de la Mancha" minlength="5">
                             <label for="author">Author</label>
-                            <input id="author" type="text" placeholder="Miguel de Cervantes">
+                            <input required id="author" type="text" placeholder="Miguel de Cervantes">
                             <label for="numberOfPages">Number of pages</label>
-                            <input id="numberOfPages" type="number" placeholder="1380">
+                            <input required id="numberOfPages" type="number" placeholder="1380" max="5000" min="1">
                         </section>
                         <menu>
                             <button id="submit__button" type="submit">Confirm</button>

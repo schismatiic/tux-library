@@ -118,9 +118,30 @@ const renderBooks = (library) => {
   });
 };
 submitButton.addEventListener("click", (event) => {
+  const input = document.getElementById("name");
   const inputName = document.getElementById("name").value;
   const inputAuthor = document.getElementById("author").value;
   const inputNumberOfPages = document.getElementById("numberOfPages").value;
+  function myFunction1() {
+    let text = "Value OK";
+    if (document.getElementById("numberOfPages").validity.rangeOverflow) {
+      text = "Value too large";
+    }
+  }
+  function myFunction2() {
+    let text = "Value OK";
+    if (document.getElementById("numberOfPages").validity.rangeUnderflow) {
+      text = "Value too small";
+    }
+  }
+  myFunction1();
+  myFunction2();
+  input.reportValidity();
+  if (input.validity.tooShort) {
+    console.log("Not enough characters entered.");
+  } else {
+    console.log("Input is valid…");
+  }
   addBookToLibrary(inputName, inputAuthor, inputNumberOfPages);
   // count++;
   // const bookToRender = myLibrary[myLibrary.length - 1];
